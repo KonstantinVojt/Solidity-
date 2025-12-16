@@ -5,6 +5,11 @@ import "./IAuctionDanishEngine.sol";
 
 contract AuctionDanishEngine is IAuctionDanishEngine, Ownable {
 
+    error IncorrectStartingPrice();
+    error AuctionStopped();
+    error AuctionAlreadyEnded();
+    error NotEnoughFunds();
+
     uint256 constant public DURATION = 2 days; // 2 * 24 * 60 * 60
     uint256 constant public FEE = 10; //10%
 
@@ -12,11 +17,6 @@ contract AuctionDanishEngine is IAuctionDanishEngine, Ownable {
 
 
     constructor() Ownable(msg.sender) {}
-
-    error IncorrectStartingPrice();
-    error AuctionStopped();
-    error AuctionAlreadyEnded();
-    error NotEnoughFunds();
 
     function buy(uint256 index) external payable {
         Auction storage cAuction = auctions[index];
