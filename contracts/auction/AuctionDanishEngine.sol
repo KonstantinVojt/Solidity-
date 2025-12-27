@@ -1,20 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
+
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Pausable.sol";
 import "./IAuctionDanishEngine.sol";
 
 contract AuctionDanishEngine is IAuctionDanishEngine, Ownable, Pausable {
-    error IncorrectStartingPrice();
-    error AuctionStopped();
-    error AuctionAlreadyEnded();
-    error NotEnoughFunds();
-    error InvalidPriceLimits();
-    error StartingPriceOutOfRange();
-    error NotSeller();
-    error NoFeesToWithdraw();
-    error ContractPaused();
-    error ContractUnpaused();
 
     uint256 constant public DURATION = 2 days; // 2 * 24 * 60 * 60
     uint256 constant public FEE = 10; //10%
@@ -23,12 +14,6 @@ contract AuctionDanishEngine is IAuctionDanishEngine, Ownable, Pausable {
     uint256 public accumulatedFees;
 
     Auction[] public auctions;
-
-    event StartingPriceLimitsUpdated(uint256 minPrice, uint256 maxPrice);
-    event AuctionCancelled(uint256 index);
-    event FeesWithdrawn(uint256 amountFees, address owner);
-    event Paused();
-    event Unpaused();
 
     constructor() Ownable(msg.sender) {}
 

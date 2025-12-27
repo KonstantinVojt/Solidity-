@@ -15,7 +15,7 @@
     "ethers": "^6.15.0",
     "hardhat": "^2.27.0",
     "hardhat-gas-reporter": "^2.3.0",
-    "solidity-coverage": "^0.8.16",
+    "solidity-coverage": "^0.8.17",
     "typechain": "^8.3.2"
   },
   "description": "This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.",

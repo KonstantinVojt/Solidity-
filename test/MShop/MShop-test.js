@@ -1,6 +1,6 @@
-// const { expect } = require("chai")
-// const { ethers } = require("hardhat")
-// const tokenJSON = require("../../artifacts/contracts/erc20/Erc.sol/MCSToken.json")
+const { expect } = require("chai")
+const { ethers } = require("hardhat")
+const tokenJSON = require("../../artifacts/contracts/erc20/Erc.sol/MCSToken.json")
 
 // describe("MShop", function () {
 //     let owner

@@ -1,10 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-// import "./IERC721Metadata.sol";
-// import "./IERC721Receiver.sol";
+import "./IERC721Metadata.sol";
+import "./IERC721Receiver.sol";
+import "./ERC165.sol";
+import "./Strings.sol";
 
-// contract ERC721 is IERC721Metadata {
+// contract ERC721 is ERC165, IERC721Metadata {
+//     using Strings for uint;
 //     string public name;
 //     string public symbol;
 //     mapping(address => uint) _balances;
@@ -38,12 +41,37 @@ pragma solidity ^0.8.0;
 //         require(_isApprovedOrOwner(msg.sender, tokenId), "not an owner or approved!");
 
 //         _safeTransfer(from, to, tokenId);
+//     }
 
+//     function _baseURI() internal pure virtual returns(string memory) {
+//         return "";
+//     }
 
+//     function tokenURI(uint tokenId) public view virtual _requireMinted(tokenId) returns(string memory) {
+//         string memory baseURI = _baseURI();
+//         return bytes(baseURI).length > 0 ?
+//             string(abi.encodePacked(baseURI, tokenId.toString()))
+//             "";
+//     }
+
+//     function approve(address to,uint tokenId) public {
+//         address _owner = ownerOf(tokenId);
+//         require(_owner == msg.sender || isApprovedForAll(_owner, msg.sender), "not an owner");
+
+//         require(to != _owner, "cannot approve to self");
+
+//         _tokenApprovals[tokenId] = to;
+
+//         emit Approval(_owner, to, tokenId);
 //     }
 
 //     function ownerOf(uint tokenId) public view _requireMinted(tokenId) returns(address) {
 //         return _owners[tokenId];
+//     }
+
+//     function supportsInterface(bytes4 interfaceId) external view returns(bool) {
+//         return interfaceId == type(IERC721).interfaceId ||
+//             super.supportsInterface(interfaceId);
 //     }
 
 //     function isApprovedForAll(address owner, address operator) public view returns(bool) {
@@ -52,6 +80,29 @@ pragma solidity ^0.8.0;
 
 //     function getApproved(uint tokenId) public view _requireMinted(tokenId) returns(address) {
 //         return _tokenApprovals[tokenId];
+//     }
+
+//     function burn(uint tokenId) public virtual {
+//         require(_isApprovedOrOwner(msg.sender, tokenId), "not an owner!");
+//         address owner = ownerOf(tokenId);
+
+//         delete _tokenApprovals[tokenId];
+//         _balances[owner]--;
+//         delete _owners[tokenId];
+//     }
+
+//     function _safeMint(address to, uint tokenId) internal virtual {
+//         _mint(to, tokenId);
+
+//         require(_checkOnERC721Received(msg.sender, to, tokenId), "non erc721 receiver!");
+//     }
+
+//     function _mint(address to, uint tokenId) internal virtual {
+//         require(to != address(0), "to cannot be zero");
+//         require(!_exists(tokenId), "already exists");
+
+//         _owners[tokenId] = to;
+//         _balances[to]++;
 //     }
 
 //     function _safeTransfer(address from, address to, uint tokenId) internal {
