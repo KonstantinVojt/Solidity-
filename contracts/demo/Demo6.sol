@@ -33,9 +33,9 @@ contract Demo6 {
 
     // call
 
-    function getBalance() public view returns(uint balance) {
-        balance = address(this).balance;
-        return balance;
+    function getBalance() public view returns(uint _balance) {
+        _balance = address(this).balance;
+        return _balance;
     }
 
     function getMessage() external view returns(string memory) {

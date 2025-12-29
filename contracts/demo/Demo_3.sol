@@ -23,7 +23,6 @@ contract Demo {
     string public myStr = "test"; // storage
 
     function demo(string memory newValueStr) public {
-        string memory myTempStr = "temp";
         myStr = newValueStr;   
     }
 

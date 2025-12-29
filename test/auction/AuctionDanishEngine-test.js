@@ -33,6 +33,10 @@ describe("AuctionDanishEngine", function () {
         ).timestamp
     }
 
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms))
+    }
+
     describe("createAction", function () {
         it("create auction correctly", async function () {
             const duration = 60
@@ -49,10 +53,6 @@ describe("AuctionDanishEngine", function () {
             expect(cAuction.endsAt).to.eq(ts + duration)
             console.log(cAuction)
         })
-
-        function delay(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms))
-        }
 
         describe("buy", function () {
             it("allows to buy", async function () {
@@ -207,9 +207,11 @@ describe("AuctionDanishEngine", function () {
                 "item",
                 100
             )
-
+            1000000000000000000
+            1000000000000000000
             const price1 = await auct.getPriceFor(0)
-            await delay(10)
+            await ethers.provider.send("evm_increaseTime", [50]);
+            await ethers.provider.send("evm_mine", []);
             const price2 = await auct.getPriceFor(0)
 
             expect(price2).to.be.lt(price1)
